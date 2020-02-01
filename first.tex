@@ -1,0 +1,205 @@
+\section{安装教程}
+详细参考这个网站, www.latex-tutorial.com
+\subsection{TexWorks字体设置}
+TexWorks中编辑-首选项-编辑器默认配置(字体)，设置好之后，重启生效。
+\section{一级标题}
+section, table of content 是目录的意思。
+\subsection{二级标题}
+subsection.
+\subsubsection{三级标题}
+subsubsection. 
+\paragraph{段落}
+paragraph
+\subparagraph{子段落}
+Subparagraph, 
+LaTex中层次分为5层，[section, subsection, subsubsection, paragraph, subparagraph]，五个层次，可以在设置目录中显示要在目录中显示的层次，其中0代表什么都不显示，5代表显示到subparagraph
+% 单独的设置目录的深度为1
+\addtocontents{toc}{\setcounter{tocdepth}{1}}
+\section{第二个标题，Another section}
+\subsection{第二个子标题 Eat}
+Eatting is necessary for human!
+% 重新设置目录的深度为3
+\addtocontents{toc}{\setcounter{tocdepth}{3}}
+\section{数学公式, Math}
+This is math envirment.
+\begin{equation}
+f(x)=x^2
+\end{equation}
+The following equation use amsmath package feature, the feature is that there isn't number beside equation.
+\begin{equation*}
+g(x)=\sum_{i=1}^{100}i
+\end{equation*}
+\section{数学公式}
+接下来写几个数学公式，描述数学公式在LaTex中的使用
+\subsection{行内公式写法,用\$作定界符号}
+嵌入文本中的公式用\$包围，e.g. $1=\frac{1}{1}$ 嵌入完毕
+\subsection{公式环境}
+有equation和align两种环境， equation环境用于一个公式的排版，align可以写多行公式，会根据\&符号的位置对齐上下两个式子，$\backslash\backslash$用来换行。
+
+\begin{equation}
+1+2=3
+\end{equation}
+
+\begin{align}
+1+0 &=1\\
+1&=2-1
+\end{align}
+以下列举几个公式的例子\\
+\subsubsection{积分}
+\begin{align}
+F(x)=\int_a^b\frac{1}{\sqrt{3}}x^3
+\end{align}
+\subsubsection{矩阵}
+矩阵，用\$号界定的环境之下，用\{matrix\}环境写入
+$
+\begin{matrix}                                      
+1 & 0\\
+0 & 1
+\end{matrix}
+$
+
+当矩阵要写入左右括号时，引入$\backslash left[$会放大括号
+$\left[
+\begin{matrix}
+1 & 0\\
+0 & 1
+\end{matrix}
+\right]
+$
+\subsubsection{$\backslash$left(的作用}
+输入普通的大括号(普通字符)
+\begin{equation}
+(\frac{1}{\sqrt{x}}) 
+1=2+-1
+\end{equation}
+
+$\backslash$left(
+\begin{equation}
+\left( \frac{1}{\sqrt{x}} \right)
+\end{equation}
+% 插图章节
+\section{插图}
+插一张巫师3的配图
+% 为图片环境设置浮动值，此设置能使得图片在当前tex位置
+% h是(here)-与tex文档相同位置, t(top of page), b(bottom of page), p (on an extra page), !(will force the specified location,强制执行制定的命令)
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{avatar.png}
+	\caption{picture about my avatar}
+	%主要是为了标注一个图片，方便于引用
+	\label{fig:qqavatar}
+\end{figure}  
+
+\subsection{引用图片示例 }
+Figure \ref{fig:qqavatar} shows a picture on here!
+\subsection{subfigure子图}
+使用子图，需要用usepackage\{subcaption\}包, 此外就是subfigure环境了
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}{0.4\linewidth}
+		\includegraphics[width=\linewidth]{avatar.png}
+		\caption{avatar}
+	\end{subfigure}
+	\begin{subfigure}{0.4\linewidth}
+		\includegraphics[width=\linewidth]{avatar.png}
+		\caption{also avatar}
+	\end{subfigure}
+	\begin{subfigure}{0.6\linewidth}
+		\includegraphics[width=\linewidth]{avatar.png}
+		\caption{avatar copy}
+	\end{subfigure}
+	\caption{two character of qq avatar}
+	\label{fig:avatar}
+\end{figure}
+
+
+% 引用章节
+\section{引用BibTeX}
+随便的引用的BOOK \cite{DUMMY:1} ,嵌入在文本中；引用的ARTICLE \cite{ARTICLE:1},引用的INBOOK例子\cite{BOOK:2},引用因特网WEBSITE\cite{WEBSITE:2}的\cite{WEBSITE:1}
+% 脚注章节
+\section{脚注}
+This is some example text\footnote{\label{myfootnote}脚注的具体内容，写在页面最下方}。textsuperscript是在文本右上有一个小角标，我在这里再次引用上面提到的脚注\textsuperscript{\ref{myfootnote}}。
+% table章节
+\section{table}
+LaTeX中表格通过table环境和tabular环境的结合来创建。table环境负责定义表格的位置和对齐方式。表格真正的内容包括在tabular环境中。textbf\{\}是用来划定列数的。用在首行。
+\begin{table}[h!]
+	\begin{center}
+		\caption{Your first table} %表格的说明文字
+		\label{tab:table1}
+		\begin{tabular}{l|c|r|l}
+			\textbf{value 1} & \textbf{value 2} & \textbf{value 3} & \textbf{value 4}\\
+			\hline
+			1 & 1110.1 & a & 100 \\
+			\hline
+			2 & 10.1    & b  & 7
+		\end{tabular}
+	\end{center}
+\end{table}
+\subsection{跨多行的表格}
+跨多行的表格，需要用usepackage\{multirow\},  multirow\{NUMBER OF ROW\} \{宽度( $\ast$为自动计算)\}\{内容\}
+\begin{table}[h!]
+	\begin{center}
+		\caption{support table of multirow cell } %表格的说明文字
+		\label{tab:table2}
+		\begin{tabular}{l|c|r|l} %l表示left对齐, c表示center, r表示right
+			\textbf{value 1} & \textbf{value 2} & \textbf{value 3} & \textbf{value 4}\\
+			\hline
+			\multirow{2}{*}{12} &1111.2 & d & 10\\
+			                                     & 1110.1 & a & 100 \\
+			\hline
+			2 & 10.1    & b  & 7
+		\end{tabular}
+	\end{center}
+\end{table}
+\subsection{跨多列的表格}
+多列控制命令, multicolumn\{Number of column\}\{Alignment,对齐方式\}\{content\}
+\begin{table}[h!]
+	\begin{center}
+		\caption{Your first table} %表格的说明文字
+		\label{tab:table3}
+		\begin{tabular}{l|c|r|l}
+			\textbf{value 1} & \textbf{value 2} & \textbf{value 3} & \textbf{value 4}\\
+			\hline
+		      \multicolumn{2}{c|}{120}  & a & 100 \\
+			\hline
+			2 & 10.1    & b  & 7
+		\end{tabular}
+	\end{center}
+\end{table}
+\subsection{多行多列结合的表格}
+具体使用看以下code
+\begin{table}[h!]
+	\begin{center}
+		\caption{Your first table} %表格的说明文字
+		\label{tab:table4}
+		\begin{tabular}{l|c|r|l}
+			\toprule
+			\textbf{value 1} & \textbf{value 2} & \textbf{value 3} & \textbf{value 4}\\
+			\hline
+			\multicolumn{2}{c|}{\multirow{2}{*}{1234}} & a & 100 \\
+			\multicolumn{2}{c|}{} &c & 101\\
+			\hline
+			2 & 10.1   & b  & 7\\
+			\bottomrule %该命令画出的线是粗的，而hline是细的，注意在最后画线的时候，上一行要进行换行\\
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\subsection{旋转表格}  %不太懂为什么旋转表格总是新起一页打开
+使用sidewaystable环境可以解决表格横向打印。
+\begin{sidewaystable}[ph!]
+	\begin{center}
+		\caption{Landscape table.} %表格的说明文字
+		\label{tab:table5}
+		\begin{tabular}{l|c|r}
+			\toprule
+			\textbf{value 1} & \textbf{value 2} & \textbf{value 3}\\
+			\midrule
+			1 & 1110.1 & a  \\
+			\hline
+			2 & 10.1    & b  \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{sidewaystable}
+\subsection{超长表格}
+有些表格是跨页的，使用usepackage\{longtable\}可以解决这个问题。具体参考网页\footnote{\label{multipage_table}https://www.latex-tutorial.com/tutorials/tables/}中的Multipage tables.

@@ -1,0 +1,59 @@
+\documentclass{article}
+% all of package must declartion in tex begin, this command means that using amsmath some feature
+\usepackage{amsmath}
+% this package support Chinese
+\usepackage[UTF8]{ctex}
+% this package support graph in latex
+\usepackage{graphicx}
+% this package support sub figure in  latex
+\usepackage{subcaption}
+% 设置目录中标题的间距
+\usepackage{setspace}
+% 设置表格需要跨多行的
+\usepackage{multirow}
+% 支持表格的上下表格线
+\usepackage{booktabs}
+% 旋转打印表格的包
+\usepackage{rotating} 
+\usepackage{tikz} % To generate the plot from csv
+\usepackage{circuitikz} % draw circuit
+ \usepackage{pgfplots}
+\usepackage{siunitx} %显示SI国际物理单位的包
+\usepackage{listings} %显示源代码
+\usepackage{color}
+\usepackage{hyperref} %用于超链接的包
+\usepackage{enumitem}  % 用于有序列表前缀显示的包
+
+
+\title{La\TeX \quad Notebook} % \quad是空格
+\date{2020-01-05}
+\author{george zzzh}
+
+\begin{document}
+	% 预先设置内容
+	\pgfplotsset{compat=newest} % Allows to place the legend below plot
+	\usepgfplotslibrary{units} % 允许输入单位
+	\hypersetup{hidelinks} % 设置链接的颜色，隐藏链接上的红框
+	\pagenumbering{gobble} % this gobble command is that disappear number in paper bottom
+	\maketitle %this command is show title, date and author in first page
+	\newpage 	% this command is make a new page
+	\pagenumbering{Roman} % bring back the number on the bottom of paper
+	\doublespacing 	% 设置目录间的间距
+	\setcounter{tocdepth}{3} 	% 目录章节, 设置总体的目录深度
+	\tableofcontents
+	\newpage
+	% 包含两个文件
+	\input{first}
+	\input{second}
+	% 插图目录
+	\section{插图目录}
+	在附录中显示一系列的插图
+	% 文件的末尾，为图的目录和所有参考文献
+	\newpage
+	\begin{appendix}
+		\listoffigures
+	\end{appendix}
+	% 所有引用的bib文件的信息
+	\bibliography{bib/cite,bib/arti,bib/inbook,bib/website,bib/website2}
+	\bibliographystyle{ieeetr}
+\end{document}
